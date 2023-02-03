@@ -1,3 +1,4 @@
+import pkg from "./package.json";
 import typescript from "@rollup/plugin-typescript";
 import sourceMaps from "rollup-plugin-sourcemaps";
 import resolve from "@rollup/plugin-node-resolve";
@@ -5,7 +6,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
 
 export default {
-  input:"./packages/vue/src/index.ts",
+  input: "./src/index.ts",
   plugins: [
     replace({
       "process.env.NODE_ENV": JSON.stringify("development"),
@@ -20,13 +21,13 @@ export default {
   output: [
     {
       format: "cjs",
-      file: "./packages/vue/dist/mini-vue.cjs.js",
+      file: pkg.main,
       sourcemap: true,
     },
     {
       name: "vue",
       format: "es",
-      file: "./packages/vue/dist/mini-vue.esm-bundler.js",
+      file: pkg.module,
       sourcemap: true,
     },
   ],
